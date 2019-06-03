@@ -19,7 +19,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-
+app.get('/', (req, res) => {
+  res.send('It is working');
+});
 
 app.get('/leaderboard', (req, res) => {
   db.select('*')
