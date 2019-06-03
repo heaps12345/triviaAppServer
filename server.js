@@ -3,30 +3,21 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const knex = require('knex');
 
-const whitelist = ['http://localhost:3000', 'https://trivia-app-123.herokuapp.com/'];
-
-const corsOptions = {
-  credentials: true,
-  origin: function(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-};
 const db = knex({
   client: 'pg',
   connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
+    host: '127.0.0.1',
+    user: 'postgres',
+    password: 'shakey45',
+
+    database: 'triviaLeaderboard'
   }
 });
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('It is working');
@@ -57,5 +48,5 @@ app.post('/leaderboard', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(5000, () => {
-  console.log(`app is running on port ${PORT}`);
+  console.log('app is running on port 5000');
 });
