@@ -28,6 +28,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
+app.get('/', (req, res) => {
+  res.send('It is working');
+});
+
 app.get('/leaderboard', (req, res) => {
   db.select('*')
     .from('users')
