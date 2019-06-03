@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const knex = require('knex');
 
-const whitelist = ['http://localhost:3000', 'https://rj-dream-journal.herokuapp.com'];
+const whitelist = ['http://localhost:3000', 'https://trivia-app-123.herokuapp.com/'];
 
 const corsOptions = {
   credentials: true,
