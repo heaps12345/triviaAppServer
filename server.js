@@ -2,18 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const knex = require('knex');
-const whitelist = ['http://localhost:3000', 'https://trivia-app-123.herokuapp.com/'];
 
-const corsOptions = {
-  credentials: true,
-  origin: function(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-};
 
 const db = knex({
   client: 'pg',
@@ -26,7 +15,7 @@ const db = knex({
 const app = express();
 
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.get('/leaderboard', (req, res) => {
   db.select('*')
